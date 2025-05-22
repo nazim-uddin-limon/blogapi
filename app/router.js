@@ -10,4 +10,6 @@ router.get("/health", (req, res) => {
   });
 });
 
+router.use(require("../routes"));
+
 module.exports = router;
