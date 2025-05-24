@@ -657,13 +657,11 @@ paths:
               type: object
               properties:
                 articleId:
-                  type: integer
-                  format: int32
-                  example: 5
+                  type: string
+                  example: 'd9sdfksdf92'
                 authorId:
-                  type: integer
-                  format: int32
-                  example: 3
+                  type: string
+                  example: dkfds92jksdjfk
                 content:
                   type: string
                   example: Comment body
@@ -780,57 +778,57 @@ paths:
                   type: string
                   enum: [active, banned]
               required: [name, email, password, avatar, articles, role, status]
-      responses: 
-        '200':
-          description: Updated Successful 
+      responses:
+        "200":
+          description: Updated Successful
           content:
             application/json:
-              schema: 
+              schema:
                 type: object
                 properties:
                   code:
                     type: integer
                     format: int32
-                    example: 200 
+                    example: 200
                   message:
                     type: string
                     example: success
-                  data: 
+                  data:
                     $ref: "#/components/schemas/User"
-                  links: 
+                  links:
                     type: object
                     properties:
                       self:
                         type: string
                         example: /users/3
-        '201':
-          description: Created Successful 
+        "201":
+          description: Created Successful
           content:
             application/json:
-              schema: 
+              schema:
                 type: object
                 properties:
                   code:
                     type: integer
                     format: int32
-                    example: 201 
+                    example: 201
                   message:
                     type: string
                     example: success
-                  data: 
+                  data:
                     $ref: "#/components/schemas/User"
-                  links: 
+                  links:
                     type: object
                     properties:
                       self:
                         type: string
-                        example: /users/3  
+                        example: /users/3
 
-        '400':
+        "400":
           $ref: "#/components/responses/400"
-        '401':
+        "401":
           $ref: "#/components/responses/401"
-        '500':
+        "500":
           $ref: "#/components/responses/500"
       summary: Update existing user or create a new one
     patch:
@@ -871,89 +869,89 @@ paths:
                 status:
                   type: string
                   enum: [active, banned]
-      responses: 
-        '200':
-          description: Updated Successful 
+      responses:
+        "200":
+          description: Updated Successful
           content:
             application/json:
-              schema: 
+              schema:
                 type: object
                 properties:
                   code:
                     type: integer
                     format: int32
-                    example: 200 
+                    example: 200
                   message:
                     type: string
                     example: success
-                  data: 
+                  data:
                     $ref: "#/components/schemas/User"
-                  links: 
+                  links:
                     type: object
                     properties:
                       self:
                         type: string
                         example: /users/3
-        '400':
+        "400":
           $ref: "#/components/responses/400"
-        '401':
+        "401":
           $ref: "#/components/responses/401"
-        '404':
+        "404":
           $ref: "#/components/responses/404"
-        '500':
+        "500":
           $ref: "#/components/responses/500"
       summary: Update existig user partially
-    delete: 
-      security: 
-        -  bearerAuth: []        
+    delete:
+      security:
+        - bearerAuth: []
       operationId: DeleteSingleUser
       tags: [User]
       description: Delete single user
-      parameters: 
+      parameters:
         - $ref: "#/components/parameters/idPathParam"
-      responses: 
-        '204':
-          description: No content 
-        '400':
+      responses:
+        "204":
+          description: No content
+        "400":
           $ref: "#/components/responses/400"
-        '401':
+        "401":
           $ref: "#/components/responses/401"
-        '404':
+        "404":
           $ref: "#/components/responses/404"
-        '500':
+        "500":
           $ref: "#/components/responses/500"
       summary: Input id and delete User
   /users:
-    get: 
-      security: 
-        -  bearerAuth: []
+    get:
+      security:
+        - bearerAuth: []
       operationId: RetrieveAllUsers
       tags: [User]
-      description: Retrieve all Users 
-      parameters: 
+      description: Retrieve all Users
+      parameters:
         - $ref: "#/components/parameters/userStatusParam"
         - $ref: "#/components/parameters/pageParam"
         - $ref: "#/components/parameters/limitParam"
         - $ref: "#/components/parameters/sortByParam"
         - $ref: "#/components/parameters/sortTypeParam"
-      responses: 
-        '200':
+      responses:
+        "200":
           description: success
           content:
             application/json:
-              schema: 
+              schema:
                 type: object
                 properties:
                   code:
                     type: integer
                     format: int32
-                    example: 200 
+                    example: 200
                   message:
                     type: string
                     example: success
                   data:
                     type: array
-                    items: 
+                    items:
                       type: object
                       $ref: "#/components/schemas/User"
                   links:
@@ -970,25 +968,25 @@ paths:
                         example: /users?page=1&limit=10
                   pagination:
                     $ref: "#/components/schemas/Pagination"
-        '400':
+        "400":
           $ref: "#/components/responses/400"
-        '401':
+        "401":
           $ref: "#/components/responses/401"
-        '404':
+        "404":
           $ref: "#/components/responses/404"
-        '500':
+        "500":
           $ref: "#/components/responses/500"
       summary: Retrieve users based on parameters
-    post: 
-      security: 
-        -  bearerAuth: []
+    post:
+      security:
+        - bearerAuth: []
       operationId: CreateNewUser
       tags: [User]
-      description: Create new User 
-      requestBody: 
+      description: Create new User
+      requestBody:
         content:
           application/json:
-            schema: 
+            schema:
               type: object
               properties:
                 name:
@@ -1013,37 +1011,37 @@ paths:
                   type: string
                   enum: [active, banned, disabled]
               required: [name, email, password]
-      responses: 
-        '201':
-          description: Created Successful 
+      responses:
+        "201":
+          description: Created Successful
           content:
             application/json:
-              schema: 
+              schema:
                 type: object
                 properties:
                   code:
                     type: integer
                     format: int32
-                    example: 201 
+                    example: 201
                   message:
                     type: string
                     example: success
-                  data: 
+                  data:
                     $ref: "#/components/schemas/User"
-                  links: 
+                  links:
                     type: object
                     properties:
                       self:
                         type: string
                         example: /users
-                      user: 
+                      user:
                         type: string
                         example: /users/154
-        '400':
+        "400":
           $ref: "#/components/responses/400"
-        '401':
+        "401":
           $ref: "#/components/responses/401"
-        '500':
+        "500":
           $ref: "#/components/responses/500"
       summary: Take input and create new user
 
@@ -1054,9 +1052,8 @@ components:
         - type: object
           properties:
             id:
-              type: integer
-              format: int32
-              example: 1
+              type: string
+              example: "68315e7f3cb9dea49ee067f8"
             name:
               type: string
               example: Nazim Uddin
@@ -1083,9 +1080,8 @@ components:
         - type: object
           properties:
             id:
-              type: integer
-              format: int32
-              example: 1
+              type: string
+              example: "68315e7f3cb9dea49ee067f8"
             title:
               type: string
               example: "JavaScript Tutorial"
@@ -1112,13 +1108,11 @@ components:
         - type: object
           properties:
             id:
-              type: integer
-              format: int32
-              example: 2
+              type: string
+              example: "68315e7f3cb9dea49ee067f8"
             articleId:
-              type: integer
-              format: int32
-              example: 4
+              type: string
+              example: "68315e7f3cb9dea49ee067f8"
             author:
               $ref: "#/components/schemas/AuthorDTO"
             content:
@@ -1142,9 +1136,8 @@ components:
       type: object
       properties:
         id:
-          type: integer
-          format: int32
-          example: 1
+          type: string
+          example: "68315e7f3cb9dea49ee067f8"
         name:
           type: string
           example: Nazim Uddin
@@ -1157,9 +1150,8 @@ components:
         - type: object
           properties:
             id:
-              type: integer
-              format: int32
-              example: 1
+              type: string
+              example: "68315e7f3cb9dea49ee067f8"
             title:
               type: string
               example: "JavaScript Tutorial"
@@ -1248,25 +1240,23 @@ components:
       description: Return resource based on author
       in: query
       schema:
-        type: integer
-        format: int32
-        example: 4
+        type: string
+        format: 68315e7f3cb9dea49ee067f8
     idPathParam:
       name: id
       description: Resource id
       in: path
       schema:
-        type: integer
-        example: 3
+        type: string
+        example: 68315e7f3cb9dea49ee067f8
       required: true
     articleParam:
       name: article_id
       description: Return Resource based on article
       in: query
       schema:
-        type: integer
-        format: int32
-        example: 3
+        type: string
+        example: 68315e7f3cb9dea49ee067f8
     statusParam:
       name: status
       description: Return resource based on status
